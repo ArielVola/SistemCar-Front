@@ -1,0 +1,58 @@
+table {
+    width: 100%;
+  }
+  
+.text-area {
+  width: 100%;
+}
+
+.btn--form {
+  margin-top: 5%;
+  margin-left: 4%;
+}
+
+th {
+  font-size: 20px;
+}
+td{
+  font-size: 15px;
+}
+
+
+#btn--detalles {
+  font-weight: bold;
+  color: cornflowerblue;
+}
+
+#btn--detalles:hover {
+  cursor: pointer;
+  text-decoration: underline;
+
+}
+
+  .icono:hover{ 
+      cursor: pointer;
+  }
+
+#table--view, #edit--view{
+    -webkit-animation: fade-out 0.4s ease-out reverse both;
+    animation: fade-out 0.4s ease-out reverse both;
+}
+
+@-webkit-keyframes fade-out {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  @keyframes fade-out {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  

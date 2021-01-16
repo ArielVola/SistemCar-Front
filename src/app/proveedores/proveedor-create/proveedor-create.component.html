@@ -1,0 +1,89 @@
+<div *ngIf="!guardado" class="container" id="form--proveedores">
+    <div class="row justify-content-center">
+
+        <form *ngIf="formGroup != undefined" name="editForm" role="form" [formGroup]="formGroup" (ngSubmit)="crearProveedor(formGroup.value)">
+            <br><br>
+            <h5>Datos personales</h5><hr>
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Nombre y apellido</mat-label>
+                        <input autocomplete="off" matInput formControlName="nombre">                
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Dirección</mat-label>
+                        <input autocomplete="off" matInput formControlName="direccion">                
+                    </mat-form-field>
+                </div>
+            </div>
+            <br><br>
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Teléfono</mat-label>
+                        <input autocomplete="off" matInput formControlName="telefono">                
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Mail</mat-label>
+                        <input autocomplete="off" matInput formControlName="email">                
+                    </mat-form-field>
+                </div>
+            </div>
+          <br>
+            <mat-accordion>
+                <mat-expansion-panel hideToggle>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                     Escribir descripción
+                    </mat-panel-title>
+                    <mat-panel-description>
+                     click para abrir y cerrar
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+                  <mat-form-field class="text-area">
+                    <textarea autocomplete="off" matInput placeholder="Redactar" formControlName="descripcion"></textarea>
+                  </mat-form-field>
+                </mat-expansion-panel>
+            </mat-accordion>
+            <div class="row justify-content-end">
+                
+                <button type="button" class="btn--form" mat-raised-button color="warn" routerLink="/proveedores">Cancelar</button>
+                <button type="submit" class="btn--form" mat-raised-button color="primary">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div *ngIf="guardado && !error" class="container" id="guardado--exitoso">
+    <br><br>
+    <div class="row justify-content-center">
+        <h2>Proveedor guardado con éxito</h2><br>
+    </div>
+    <div class="row justify-content-center">
+        <img id="img--check" src="../../../assets/check.png" alt="">
+    </div>
+
+    <div class="row justify-content-center">
+        <button type="button" class="btn--form" mat-raised-button color="" routerLink="/proveedores">Ver proveedores</button>
+        <button type="button" class="btn--form" mat-raised-button color="primary" (click)="reload()">Cargar otro proveedor</button>
+    </div>
+</div>
+
+<div *ngIf="error" class="container" id="guardado--exitoso">
+    <br><br>
+    <div class="row justify-content-center">
+        <h2>Algo salió mal</h2><br>
+    </div>
+    <div class="row justify-content-center">
+        <img id="img--check" src="../../../assets/warning.png" alt="">
+    </div>
+
+    <div class="row justify-content-center">
+        <button type="button" class="btn--form" mat-raised-button color="" routerLink="/clientes">Ver clientes</button>
+        <button type="button" class="btn--form" mat-raised-button color="primary" (click)="vIntentar()">Volver a intentar</button>
+    </div>
+</div>

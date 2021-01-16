@@ -1,0 +1,134 @@
+<div *ngIf="!guardado" class="container">
+    <br><h3> Cargar nuevo cliente</h3><br>
+    <div class="row justify-content-center">
+        <form *ngIf="formGroup != undefined" name="editForm" role="form" [formGroup]="formGroup"
+        (ngSubmit)="guardarCliente(formGroup.value)">
+
+            <h5>Datos personales</h5><hr>
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Nombre y apellido</mat-label>
+                        <input autocomplete="off" matInput formControlName="nombre">                
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Dirección</mat-label>
+                        <input autocomplete="off" matInput formControlName="direccion">                
+                    </mat-form-field>
+                </div>
+            </div>
+            <br><br>
+            <div class="row">
+                <div class="col-md-4">
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Cuil</mat-label>
+                        <input autocomplete="off" matInput formControlName="cuil">                
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Teléfono</mat-label>
+                        <input autocomplete="off" matInput formControlName="telefono">                
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Mail</mat-label>
+                        <input autocomplete="off" matInput formControlName="email">                
+                    </mat-form-field>
+                </div>
+            </div>
+           <br><br>
+            <h5>Datos del vehículo</h5>
+            <hr>
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Patente</mat-label>
+                        <input autocomplete="off" matInput formControlName="patente">                
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Kilometraje</mat-label>
+                        <input autocomplete="off" matInput formControlName="kilometraje">                
+                    </mat-form-field>
+                </div>
+            </div>
+            <br><br>
+            <div class="row">
+                <div class="col-md-4">
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Marca</mat-label>
+                        <input autocomplete="off" matInput formControlName="marca">                
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Modelo</mat-label>
+                        <input autocomplete="off" matInput formControlName="modelo">                
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Color</mat-label>
+                        <input autocomplete="off" matInput formControlName="color">                
+                    </mat-form-field>
+                </div>
+            </div>
+            <br>
+            <mat-accordion>
+                <mat-expansion-panel hideToggle>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                     Escribir detalle
+                    </mat-panel-title>
+                    <mat-panel-description>
+                     click para abrir y cerrar
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+                  <mat-form-field class="text-area">
+                    <textarea autocomplete="off" matInput placeholder="Redactar" formControlName="detalles"></textarea>
+                  </mat-form-field>
+                </mat-expansion-panel>
+            </mat-accordion>
+            <div class="row justify-content-end">
+                
+                <button type="button" class="btn--form" mat-raised-button color="warn" routerLink="/clientes">Cancelar</button>
+                <button type="submit" class="btn--form" mat-raised-button color="primary" [disabled]="guardado">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div *ngIf="guardado && !error" class="container" id="guardado--exitoso">
+    <br><br>
+    <div class="row justify-content-center">
+        <h2>Cliente Guardado con éxito</h2><br>
+    </div>
+    <div class="row justify-content-center">
+        <img id="img--check" src="../../../assets/check.png" alt="">
+    </div>
+
+    <div class="row justify-content-center">
+        <button type="button" class="btn--form" mat-raised-button color="" routerLink="/clientes">Ver clientes</button>
+        <button type="button" class="btn--form" mat-raised-button color="primary" (click)="reload()">Cargar otro cliente</button>
+    </div>
+</div>
+
+<div *ngIf="error" class="container" id="guardado--exitoso">
+    <br><br>
+    <div class="row justify-content-center">
+        <h2>Algo salió mal</h2><br>
+    </div>
+    <div class="row justify-content-center">
+        <img id="img--check" src="../../../assets/warning.png" alt="">
+    </div>
+
+    <div class="row justify-content-center">
+        <button type="button" class="btn--form" mat-raised-button color="" routerLink="/clientes">Ver clientes</button>
+        <button type="button" class="btn--form" mat-raised-button color="primary" (click)="vIntentar()">Volver a intentar</button>
+    </div>
+</div>

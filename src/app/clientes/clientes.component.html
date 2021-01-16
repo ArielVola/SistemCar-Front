@@ -1,0 +1,199 @@
+<div class="container" *ngIf="!editar" id="table--view">
+  <br>
+  
+  <div class="row justify-content-end">
+    <button routerLink="/clientes/new" mat-raised-button color="primary">Cargar cliente</button>
+  </div>  
+  
+  <br>
+
+  <div class="row justify-content-center">
+
+      <table mat-table [dataSource]="clientes" class="mat-elevation-z8">
+
+            <ng-container matColumnDef="nombre">
+              <th mat-header-cell *matHeaderCellDef> Nombre </th>
+              <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="direccion">
+              <th mat-header-cell *matHeaderCellDef> Dirección </th>
+              <td mat-cell *matCellDef="let element"> {{element.direccion}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="cuil">
+              <th mat-header-cell *matHeaderCellDef> Cuil </th>
+              <td mat-cell *matCellDef="let element"> {{element.cuil}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="telefono">
+              <th mat-header-cell *matHeaderCellDef> Telefono </th>
+              <td mat-cell *matCellDef="let element"> {{element.telefono}} </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef> Email </th>
+                <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+              </ng-container>
+          
+              <ng-container matColumnDef="patente">
+                <th mat-header-cell *matHeaderCellDef> Paente </th>
+                <td mat-cell *matCellDef="let element"> {{element.patente}} </td>
+              </ng-container>
+    
+              <ng-container matColumnDef="marca">
+                <th mat-header-cell *matHeaderCellDef> Marca </th>
+                <td mat-cell *matCellDef="let element"> {{element.marca}} </td>
+              </ng-container>
+    
+              <ng-container matColumnDef="modelo">
+                <th mat-header-cell *matHeaderCellDef> Modelo </th>
+                <td mat-cell *matCellDef="let element"> {{element.modelo}} </td>
+              </ng-container>
+    
+              <ng-container matColumnDef="color">
+                <th mat-header-cell *matHeaderCellDef> Color </th>
+                <td mat-cell *matCellDef="let element"> {{element.color}} </td>
+              </ng-container>
+    
+              <ng-container matColumnDef="kilometraje">
+                <th mat-header-cell *matHeaderCellDef> Kilometraje </th>
+                <td mat-cell *matCellDef="let element"> {{element.kilometraje}} </td>
+              </ng-container>
+    
+              <ng-container matColumnDef="detalles">
+                <th mat-header-cell *matHeaderCellDef> Detalles </th>
+                <td mat-cell *matCellDef="let element" id="btn--detalles" (click)="openDetalles(element)"> Ver </td>
+              </ng-container>
+    
+              <ng-container matColumnDef="edit">
+                <th mat-header-cell *matHeaderCellDef> </th>
+                <td mat-cell *matCellDef="let element"> <mat-icon class="icono" (click)="habilitarEdicion(element)"> edit </mat-icon></td>
+              </ng-container>
+
+              <ng-container matColumnDef="espacio">
+                <th mat-header-cell *matHeaderCellDef> </th>
+                <td mat-cell *matCellDef="let element">    </td>
+              </ng-container>
+
+              <ng-container matColumnDef="delete">
+                <th mat-header-cell *matHeaderCellDef> </th>
+                <td mat-cell *matCellDef="let element"> <mat-icon class="icono" (click)="openDialog(element)"> delete </mat-icon> </td>
+              </ng-container>
+    
+    
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+          
+    </div>
+
+</div>
+  <div *ngIf="editar" class="container" id="edit--container">
+    <br>
+    <h2>Editar cliente</h2><br>
+    <div class="row justify-content-center">
+      <form *ngIf="formGroup != undefined && clienteSeleccionado != undefined" name="editForm" role="form" [formGroup]="formGroup" (ngSubmit)="editarCliente(formGroup.value)">
+
+          <h5>Datos personales</h5><hr>
+          <div class="row">
+              <div class="col-md-6">
+                  <mat-form-field appearance="legacy">
+                      <mat-label>Nombre y apellido</mat-label>
+                      <input autocomplete="off" matInput formControlName="nombre">                
+                  </mat-form-field>
+              </div>
+              <div class="col-md-4">
+                  <mat-form-field appearance="legacy">
+                      <mat-label>Dirección</mat-label>
+                      <input autocomplete="off" matInput formControlName="direccion">                
+                  </mat-form-field>
+              </div>
+          </div>
+          <br><br>
+          <div class="row">
+              <div class="col-md-4">
+                  <mat-form-field appearance="legacy">
+                      <mat-label>Cuil</mat-label>
+                      <input autocomplete="off" matInput formControlName="cuil">                
+                  </mat-form-field>
+              </div>
+              <div class="col-md-4">
+                  <mat-form-field appearance="legacy">
+                      <mat-label>Teléfono</mat-label>
+                      <input autocomplete="off" matInput formControlName="telefono">                
+                  </mat-form-field>
+              </div>
+              <div class="col-md-4">
+                  <mat-form-field appearance="legacy">
+                      <mat-label>Mail</mat-label>
+                      <input autocomplete="off" matInput formControlName="email">                
+                  </mat-form-field>
+              </div>
+          </div>
+         <br><br>
+          <h5>Datos del vehículo</h5>
+          <hr>
+          <div class="row">
+              <div class="col-md-6">
+                  <mat-form-field appearance="legacy">
+                      <mat-label>Patente</mat-label>
+                      <input autocomplete="off" matInput formControlName="patente">                
+                  </mat-form-field>
+              </div>
+              <div class="col-md-4">
+                  <mat-form-field appearance="legacy">
+                      <mat-label>Kilometraje</mat-label>
+                      <input autocomplete="off" matInput formControlName="kilometraje">                
+                  </mat-form-field>
+              </div>
+          </div>
+          <br><br>
+          <div class="row">
+              <div class="col-md-4">
+                  <mat-form-field appearance="legacy">
+                      <mat-label>Marca</mat-label>
+                      <input autocomplete="off" matInput formControlName="marca">                
+                  </mat-form-field>
+              </div>
+              <div class="col-md-4">
+                  <mat-form-field appearance="legacy">
+                      <mat-label>Modelo</mat-label>
+                      <input autocomplete="off" matInput formControlName="modelo">                
+                  </mat-form-field>
+              </div>
+              <div class="col-md-4">
+                  <mat-form-field appearance="legacy">
+                      <mat-label>Color</mat-label>
+                      <input autocomplete="off" matInput formControlName="color">                
+                  </mat-form-field>
+              </div>
+          </div>
+          <br>
+          <mat-accordion>
+              <mat-expansion-panel hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                   Escribir detalle
+                  </mat-panel-title>
+                  <mat-panel-description>
+                   click para abrir y cerrar
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <mat-form-field class="text-area">
+                  <textarea autocomplete="off" matInput placeholder="Redactar" formControlName="detalles"></textarea>
+                </mat-form-field>
+              </mat-expansion-panel>
+          </mat-accordion>
+          <div class="row justify-content-end">
+              
+              <button type="button" class="btn--form" mat-raised-button color="warn" (click)="reload()">Cancelar</button>
+              <button type="submit" class="btn--form" mat-raised-button color="primary">Guardar cambios</button>
+          </div>
+      </form>
+    </div>
+
+  </div>
+      
+
+ 

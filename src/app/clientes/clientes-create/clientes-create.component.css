@@ -1,0 +1,37 @@
+.text-area {
+    width: 100%;
+}
+
+.btn--form {
+    margin-top: 5%;
+    margin-left:4%;
+}
+
+#img--check {
+    height: 200px;
+}
+
+#guardado--exitoso {
+
+    -webkit-animation: fade-out 1s ease-out reverse both;
+	        animation: fade-out 1s ease-out reverse both;
+        
+}
+
+@-webkit-keyframes fade-out {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  @keyframes fade-out {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  

@@ -1,0 +1,6 @@
+<h2 mat-dialog-title>Confirmación de borrado</h2>
+<mat-dialog-content>¿Estás seguro de querer borrar a {{data.nombre | titlecase}} ?</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button matDialogClose>Cancelar y volver</button>
+    <button mat-button matDialogClose (click)="borrarCliente()" >Borrar</button>
+</mat-dialog-actions>
