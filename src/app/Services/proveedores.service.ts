@@ -20,6 +20,12 @@ export class ProveedoresService {
         });
     }
 
+    findProveedoresByFiltro(nombre:string) {
+        return this.http.get<Iproveedores[]>(this.resourceUrl+'/activos-filtro/'+nombre,{
+            observe:'response'
+        });
+    }
+
     createProveedor(proveedor: Iproveedores): Observable<EntityResponseType> {
         return this.http.post<Iproveedores>(this.resourceUrl + "/new", proveedor,{
             observe:'response'

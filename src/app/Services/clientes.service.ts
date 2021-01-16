@@ -20,6 +20,12 @@ export class ClientesService {
         });
     }
 
+    findClienteByFiltro(patente: string): Observable<EntityArrayResponseType> {
+        return this.http.get<Iclientes[]>(this.resourceUrl+'/activos-filtro/'+patente,{
+            observe:'response'
+        });
+    }
+
     createCliente(cliente: Iclientes): Observable<EntityResponseType> {
         return this.http.post<Iclientes>(this.resourceUrl+'/new',cliente, {
             observe:'response'

@@ -20,12 +20,16 @@ export class ClientesComponent implements OnInit  {
 
   editar?: boolean = false;
 
+  search: string;
+
   public formGroup: FormGroup;
 
   displayedColumns: string[] = ['nombre', 'direccion', 'cuil', 'telefono', 'email', 'patente', 'marca', 'modelo', 'color', 'kilometraje', 'detalles','edit','espacio','delete'];
   
 
-  constructor(protected clientesService: ClientesService, public dialog: MatDialog, private formBuilder: FormBuilder) { }
+  constructor(protected clientesService: ClientesService, public dialog: MatDialog, private formBuilder: FormBuilder) {
+    this.search = '';
+   }
 
   ngOnInit() {
     this.traerClientes();
@@ -51,6 +55,18 @@ export class ClientesComponent implements OnInit  {
     this.clientesService.findAllClientes().subscribe((res: HttpResponse<Iclientes[]>)=>{
       this.clientes = res.body;
     })
+  }
+
+  busquedaPorPatente() {
+    if(this.search.length !== 0) {
+      this.clientesService.findClienteByFiltro(this.search).subscribe((res: HttpResponse<Iclientes[]>)=>{
+        this.clientes = res.body || [];
+      })
+    } else {
+      this.clientesService.findAllClientes().subscribe((res:HttpResponse<Iclientes[]>)=>{
+        this.clientes = res.body || [];
+      })
+    }
   }
 
   habilitarEdicion(cliente: Iclientes) {

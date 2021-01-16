@@ -21,10 +21,14 @@ export class ProveedoresComponent implements OnInit {
   proveedorSeleccionado?: Iproveedores;
 
   public formGroup: FormGroup;
+
+  search:string;
   
   displayedColumns: string[] = ['nombre', 'direccion', 'telefono', 'email', 'descripcion','edit','espacio','delete'];
 
-  constructor(protected proveedoresService: ProveedoresService, private formBuilder: FormBuilder, public dialog: MatDialog) { }
+  constructor(protected proveedoresService: ProveedoresService, private formBuilder: FormBuilder, public dialog: MatDialog) { 
+    this.search = '';
+  }
 
   ngOnInit(): void {
     this.traerProveedores();
@@ -44,6 +48,18 @@ export class ProveedoresComponent implements OnInit {
     this.proveedoresService.findAllProveedores().subscribe((res: HttpResponse<Iproveedores[]>)=>{ 
       this.proveedores = res.body;
     })
+  }
+
+  findProveedoresByFiltro(){
+    if(this.search.length !== 0 ){ 
+      this.proveedoresService.findProveedoresByFiltro(this.search).subscribe((res:HttpResponse<Iproveedores[]>)=>{
+        this.proveedores = res.body || [];
+      })
+    }else {
+      this.proveedoresService.findAllProveedores().subscribe((res:HttpResponse<Iproveedores[]>)=> {
+        this.proveedores = res.body || [];
+      })
+    }
   }
 
   editarProveedor(proveedor: Iproveedores) {

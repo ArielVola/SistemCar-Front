@@ -6,9 +6,20 @@
   </div>  
   
   <br>
-
+<input
+      type="text"
+      id="search"
+      class="form-control"
+      name="search"
+      id="search"
+      placeholder="Buscar por patente"
+      maxlength="50"
+      (keypress)="busquedaPorPatente()"
+      [(ngModel)]="search"
+    />
+    <br>
   <div class="row justify-content-center">
-
+    
       <table mat-table [dataSource]="clientes" class="mat-elevation-z8">
 
             <ng-container matColumnDef="nombre">
