@@ -1,6 +1,8 @@
 <h2 mat-dialog-title>Descripción de {{data.nombre | titlecase}} </h2>
 <hr>
-<mat-dialog-content> <p>{{data.descripcion}}</p> </mat-dialog-content> 
+<mat-form-field class="text-area">
+    <textarea autocomplete="off" matInput rows="30" readonly > {{data.descripcion}} </textarea>
+</mat-form-field>
 <mat-dialog-actions>
     <button id="btn--detalles" mat-button matDialogClose>Cerrar y volver</button>
 </mat-dialog-actions>

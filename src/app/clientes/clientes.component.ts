@@ -102,4 +102,6 @@ export class ClientesComponent implements OnInit  {
       this.dialog.open(DetalleClienteDialogComponent, {data:{nombre: cliente.nombre,detalles:cliente.detalles}});
     }
 
+    
+
 }

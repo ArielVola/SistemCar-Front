@@ -1,3 +1,9 @@
 #btn--detalles {
     width: 100%;
 }
+.text-area {
+    width: 1000px;
+    height: 500px;
+    border: none;
+    pointer-events: none;
+  }
