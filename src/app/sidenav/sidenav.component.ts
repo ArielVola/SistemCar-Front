@@ -15,6 +15,7 @@ export class SidenavComponent implements OnDestroy {
   fillerNav=[
     {name:"Clientes", route:"clientes",icon:"group"},
     {name:"Proveedores", route:"proveedores",icon:"contact_phone"},
+    {name:"Presupuestos", route:"presupuestos", icon:"assignment"}
   ]
 
   private _mobileQueryListener: () => void;    

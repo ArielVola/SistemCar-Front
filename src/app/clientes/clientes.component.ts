@@ -2,10 +2,12 @@ import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { PageEvent } from '@angular/material/paginator';
 import { Iclientes } from '../Models/clientes.model';
 import { ClientesService } from '../Services/clientes.service';
 import { DeleteClienteDialogComponent } from './delete-cliente-dialog/delete-cliente-dialog.component';
 import { DetalleClienteDialogComponent } from './detalle-cliente-dialog/detalle-cliente-dialog.component';
+import { DetalleAutoClienteComponent } from './detalle-auto-cliente/detalle-auto-cliente.component';
 
 @Component({
   selector: 'app-clientes',
@@ -24,7 +26,8 @@ export class ClientesComponent implements OnInit  {
 
   public formGroup: FormGroup;
 
-  displayedColumns: string[] = ['nombre', 'direccion', 'cuil', 'telefono', 'email', 'patente', 'marca', 'modelo', 'color', 'kilometraje', 'detalles','edit','espacio','delete'];
+  // , 'marca', 'modelo', 'color', 'kilometraje',
+  displayedColumns: string[] = ['nombre', 'direccion', 'cuil', 'telefono', 'email', 'patente','detallesAuto' ,'detalles','edit','espacio','delete'];
   
 
   constructor(protected clientesService: ClientesService, public dialog: MatDialog, private formBuilder: FormBuilder) {
@@ -102,6 +105,18 @@ export class ClientesComponent implements OnInit  {
       this.dialog.open(DetalleClienteDialogComponent, {data:{nombre: cliente.nombre,detalles:cliente.detalles}});
     }
 
-    
+    openDetallesAuto(auto:any) {
+      this.dialog.open(DetalleAutoClienteComponent,
+        {data:{patente: auto.patente,marca: auto.marca,modelo:auto.modelo, color: auto.color, kilometraje: auto.kilometraje}}
+      );
+    }
 
+    handlePage(e: PageEvent) {
+      this.page_size = e.pageSize;
+      this.page_number = e.pageIndex + 1;
+    }
+
+  page_size: number = 10
+  page_number: number = 1    
+  pageSizeOptions = [5,10,20]
 }

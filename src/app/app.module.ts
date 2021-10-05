@@ -27,11 +27,10 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatIconModule} from '@angular/material/icon';
-import {MatInputModule} from '@angular/material/input';
 import {MatListModule} from '@angular/material/list';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatPaginatorIntl, MatPaginatorModule} from '@angular/material/paginator';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatRadioModule} from '@angular/material/radio';
@@ -58,6 +57,14 @@ import { DeleteClienteDialogComponent } from './clientes/delete-cliente-dialog/d
 import { DeleteProveedorDialogComponent } from './proveedores/delete-proveedor-dialog/delete-proveedor-dialog.component';
 import { DetalleClienteDialogComponent } from './clientes/detalle-cliente-dialog/detalle-cliente-dialog.component';
 import { DescripcionProvedoresDialogComponent } from './proveedores/descripcion-provedores-dialog/descripcion-provedores-dialog.component';
+import { PaginatePipe } from './pipes/paginate.pipe';
+import { CustomMatPaginatorIntl } from './paginator-es';
+import { DetalleAutoClienteComponent } from './clientes/detalle-auto-cliente/detalle-auto-cliente.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { PresupuestosComponent } from './presupuestos/presupuestos/presupuestos.component';
+import { PresupuestosCreateComponent } from './presupuestos/presupuestos/presupuestos-create/presupuestos-create.component';
+import { PresupuestoGeneradoComponent } from './presupuestos/presupuestos/presupuesto-generado/presupuesto-generado.component';
 
 @NgModule({
   declarations: [
@@ -70,9 +77,14 @@ import { DescripcionProvedoresDialogComponent } from './proveedores/descripcion-
     DeleteClienteDialogComponent,
     DeleteProveedorDialogComponent,
     DetalleClienteDialogComponent,
-    DescripcionProvedoresDialogComponent
+    DescripcionProvedoresDialogComponent,
+    PaginatePipe,
+    DetalleAutoClienteComponent,
+    PresupuestosComponent,
+    PresupuestosCreateComponent,
+    PresupuestoGeneradoComponent
   ],
-  entryComponents: [DeleteClienteDialogComponent, DeleteProveedorDialogComponent, DetalleClienteDialogComponent,DescripcionProvedoresDialogComponent],
+  entryComponents: [DeleteClienteDialogComponent, DeleteProveedorDialogComponent, DetalleClienteDialogComponent,DescripcionProvedoresDialogComponent, DetalleAutoClienteComponent],
   imports: [
     FormsModule,
     ReactiveFormsModule,
@@ -125,8 +137,12 @@ import { DescripcionProvedoresDialogComponent } from './proveedores/descripcion-
     PortalModule,
     ScrollingModule,
     AppRoutingModule,
+    MatFormFieldModule,
   ],
-  providers: [],
+  providers: [{
+    provide: MatPaginatorIntl, 
+    useClass: CustomMatPaginatorIntl
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,4 @@
-<div class="container" *ngIf="!editar" id="table--view">
+<div *ngIf="!editar" id="table--view">
   <br>
   
   <div class="row justify-content-end">
@@ -18,63 +18,67 @@
       [(ngModel)]="search"
     />
     <br>
-  <div class="row justify-content-center">
-    
-      <table mat-table [dataSource]="clientes" class="mat-elevation-z8">
+  <div class="row justify-content-center row-table">
+    <div style="width: 100%;">
+      <table mat-table [dataSource]="clientes | paginate:page_size:page_number" class="mat-elevation-z8">
 
             <ng-container matColumnDef="nombre">
-              <th mat-header-cell *matHeaderCellDef> Nombre </th>
+              <th mat-header-cell *matHeaderCellDef id="th_table"> Nombre </th>
               <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
             </ng-container>
           
             <ng-container matColumnDef="direccion">
-              <th mat-header-cell *matHeaderCellDef> Dirección </th>
-              <td mat-cell *matCellDef="let element"> {{element.direccion}} </td>
+              <th mat-header-cell *matHeaderCellDef id="th_table"> Dirección </th>
+              <td mat-cell *matCellDef="let element"> {{(element.direccion) ? element.direccion : '-'}} </td>
             </ng-container>
           
             <ng-container matColumnDef="cuil">
-              <th mat-header-cell *matHeaderCellDef> Cuil </th>
-              <td mat-cell *matCellDef="let element"> {{element.cuil}} </td>
+              <th mat-header-cell *matHeaderCellDef id="th_table"> Cuil </th>
+              <td mat-cell *matCellDef="let element"> {{(element.cuil) ? element.cuil : '-'}} </td>
             </ng-container>
           
             <ng-container matColumnDef="telefono">
-              <th mat-header-cell *matHeaderCellDef> Telefono </th>
-              <td mat-cell *matCellDef="let element"> {{element.telefono}} </td>
+              <th mat-header-cell *matHeaderCellDef id="th_table"> Telefono </th>
+              <td mat-cell *matCellDef="let element"> {{(element.telefono) ? element.telefono : '-'}} </td>
             </ng-container>
     
             <ng-container matColumnDef="email">
-                <th mat-header-cell *matHeaderCellDef> Email </th>
-                <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+                <th mat-header-cell *matHeaderCellDef id="th_table"> Email </th>
+                <td mat-cell *matCellDef="let element"> {{(element.email) ? element.email : '-'}} </td>
               </ng-container>
           
               <ng-container matColumnDef="patente">
-                <th mat-header-cell *matHeaderCellDef> Paente </th>
-                <td mat-cell *matCellDef="let element"> {{element.patente}} </td>
+                <th mat-header-cell *matHeaderCellDef id="th_table"> Patente </th>
+                <td mat-cell *matCellDef="let element" id="td_strong" > {{element.patente | uppercase}} </td>
+              </ng-container>
+              <ng-container matColumnDef="detallesAuto">
+                <th style="text-align: center;" mat-header-cell *matHeaderCellDef> Detalles del auto </th>
+                <td style="text-align: center;" mat-cell *matCellDef="let element" id="btn--detalles" (click)="openDetallesAuto(element)"><span>Ver</span></td>
               </ng-container>
     
-              <ng-container matColumnDef="marca">
-                <th mat-header-cell *matHeaderCellDef> Marca </th>
+<!--               <ng-container matColumnDef="marca">
+                <th mat-header-cell *matHeaderCellDef id="th_table"> Marca </th>
                 <td mat-cell *matCellDef="let element"> {{element.marca}} </td>
               </ng-container>
     
               <ng-container matColumnDef="modelo">
-                <th mat-header-cell *matHeaderCellDef> Modelo </th>
+                <th mat-header-cell *matHeaderCellDef id="th_table"> Modelo </th>
                 <td mat-cell *matCellDef="let element"> {{element.modelo}} </td>
               </ng-container>
     
-              <ng-container matColumnDef="color">
+              <ng-container matColumnDef="color" id="th_table">
                 <th mat-header-cell *matHeaderCellDef> Color </th>
                 <td mat-cell *matCellDef="let element"> {{element.color}} </td>
               </ng-container>
     
-              <ng-container matColumnDef="kilometraje">
+              <ng-container matColumnDef="kilometraje" id="th_table">
                 <th mat-header-cell *matHeaderCellDef> Kilometraje </th>
                 <td mat-cell *matCellDef="let element"> {{element.kilometraje}} </td>
-              </ng-container>
+              </ng-container> -->
     
               <ng-container matColumnDef="detalles">
-                <th mat-header-cell *matHeaderCellDef> Detalles </th>
-                <td mat-cell *matCellDef="let element" id="btn--detalles" (click)="openDetalles(element)"> Ver </td>
+                <th style="text-align: center;" mat-header-cell *matHeaderCellDef> Detalles </th>
+                <td style="text-align: center;" mat-cell *matCellDef="let element" id="btn--detalles" (click)="openDetalles(element)"><span>Ver</span></td>
               </ng-container>
     
               <ng-container matColumnDef="edit">
@@ -95,8 +99,15 @@
     
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-          </table>
-          
+          </table>  
+          <mat-paginator [length]="clientes?.length"
+          [pageSize]="page_size"
+          [pageSizeOptions]="pageSizeOptions"
+          (page)="handlePage($event)"
+          showFirstLastButtons
+          >
+        </mat-paginator>     
+      </div>   
     </div>
 
 </div>

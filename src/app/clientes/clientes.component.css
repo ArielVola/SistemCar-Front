@@ -1,6 +1,22 @@
+#table--view {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+#td_strong {
+  font-weight: 600;
+  color: #232222;
+}
+
 table {
     width: 100%;
-  }
+}
+
 
 .icono {
   margin-left: 20%;
@@ -20,11 +36,16 @@ table {
   cursor: pointer;
 }
 
+#th_table {
+  text-align: center;
+}
+
 th {
   font-size: 20px;
 }
 td{
   font-size: 15px;
+  text-align: center;
 }
 
 #edit--container, #table--view {
@@ -41,6 +62,10 @@ td{
   cursor: pointer;
   text-decoration: underline;
 
+}
+
+.row-table {
+  margin-top: 30px;
 }
 
  @-webkit-keyframes fade-out {

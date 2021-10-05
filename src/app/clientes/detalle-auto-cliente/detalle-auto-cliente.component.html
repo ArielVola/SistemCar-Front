@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>Detalles de <strong> {{data.patente | titlecase}}</strong> </h2>
+<hr>
+<mat-dialog-content>
+    <mat-form-field style="width: 600px;">
+        <mat-list role="list">
+            <mat-list-item role="listitem"><strong>Marca:</strong>{{data.marca}}</mat-list-item>
+            <mat-list-item role="listitem"><strong>Modelo:</strong>{{data.modelo}}</mat-list-item>
+            <mat-list-item role="listitem"><strong>Color:</strong>{{data.color}}</mat-list-item>
+            <mat-list-item role="listitem"><strong>Kilometraje:</strong>{{data.kilometraje}}</mat-list-item>
+        </mat-list>
+    </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button id="btn--detalles" mat-button matDialogClose>Cerrar y volver</button>
+</mat-dialog-actions>
